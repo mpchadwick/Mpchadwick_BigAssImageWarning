@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<config>
+  <sections>
+    <big_ass_image translate="label">
+      <label>Big Ass Image</label>
+      <tab>advanced</tab>
+      <frontend_type>text</frontend_type>
+      <sort_order>1000</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+      <groups>
+        <settings translate="label">
+          <label>Settings</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>100</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+
+            <!-- Enabled -->
+            <enabled translate="label comment">
+              <label>Enabled</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </enabled>
+
+            <!-- Warning File Size -->
+            <warning_file_size translate="label comment">
+              <label>Warning File Size: </label>
+              <comment>
+                <![CDATA[The size (in kilobytes) at which the user will be warned about the big ass image they just uploaded (e.g. 100).]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <validate>validate-number</validate>
+            </warning_file_size>
+
+            <!-- Warning Message -->
+            <warning_message translate="label comment">
+              <label>Warning Message: </label>
+              <comment>
+                <![CDATA[The message that will be displayed when a user uploads a big ass image. {{file_size}} will be replaced with the size of image uploaded by the user and {{warning_file_size}} will be replaced by warning file size as specified above.]]>
+              </comment>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </warning_message>
+          </fields>
+        </settings>
+      </groups>
+    </big_ass_image>
+  </sections>
+</config>

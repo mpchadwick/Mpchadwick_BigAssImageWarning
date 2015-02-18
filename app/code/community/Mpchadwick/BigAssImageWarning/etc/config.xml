@@ -1,0 +1,25 @@
+<config>
+    <modules>
+        <Mpchadwick_BigAssImageWarning>
+            <version>0.0.1</version>
+        </Mpchadwick_BigAssImageWarning>
+    </modules>
+    <default>
+        <big_ass_image>
+            <settings>
+                <enabled>1</enabled>
+                <warning_file_size>100</warning_file_size>
+                <warning_message>Hold up! Do you realize that you just uploaded a BIG ASS IMAGE? The image you just uploaded weighs in at {{file_size}}. Consider using the "Remove" button and optimizing this image. Try keeping your images under {{warning_file_size}} to help keep your website fast.</warning_message>
+            </settings>
+        </big_ass_image>
+    </default>
+    <adminhtml>
+        <layout>
+            <updates>
+                <mpchadwick_big_ass_image>
+                    <file>mpchadwick_bigassimage.xml</file>
+                </mpchadwick_big_ass_image>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

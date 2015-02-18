@@ -1,0 +1,8 @@
+<config>
+  <modules>
+    <Mpchadwick_BigAssImageWarning>
+      <active>true</active>
+      <codePool>community</codePool>
+    </Mpchadwick_BigAssImageWarning>
+  </modules>
+</config>

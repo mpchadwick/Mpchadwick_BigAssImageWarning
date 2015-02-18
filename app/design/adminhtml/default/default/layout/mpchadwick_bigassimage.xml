@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_cms_wysiwyg_images_index>
+        <reference name="content">
+            <block type="core/template" name="bigassimage" template="mpchadwick/bigassimage/warning.phtml" output="toHtml" />
+        </reference>
+    </adminhtml_cms_wysiwyg_images_index>
+</layout>

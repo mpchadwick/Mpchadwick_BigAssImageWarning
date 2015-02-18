@@ -1,0 +1,71 @@
+<?php if(Mage::getStoreConfig('big_ass_image/settings/enabled')): ?>
+
+<script type="text/javascript">
+//<![CDATA[
+	var checkedImages = [];
+	var parenthesizedText = /\(([^)]+)\)/;
+	var warnLevel = parseFloat('<?php echo Mage::getStoreConfig('big_ass_image/settings/warning_file_size'); ?>');
+	var warnMessage = '<?php echo Mage::getStoreConfig('big_ass_image/settings/warning_message')?>'
+	var isMb;
+
+	function listenForImageUpload() {
+		$$('.file-row').each(function(el) {
+			if(checkedImages.indexOf(el.id) === -1) {				
+				var sizeArr = parenthesizedText.exec(el.select('.file-info')[0].innerHTML);
+				var size = sizeArr[sizeArr.length - 1];
+				handleImageUpload(size);
+				checkedImages.push(el.id);
+			}
+		})
+		setTimeout(listenForImageUpload, 20);
+	}
+
+	function handleImageUpload(size) {
+		isMb = (size.indexOf('MB') !== -1) ? true : false;
+		var size = parseFloat(size.replace(/[^\d.-]/g, ''));
+		size = (isMb) ? size * 1000 : size;
+		if(size >= warnLevel) {
+			handleBigAssImage(size);
+		}
+	}
+
+	function handleBigAssImage(size) {
+		$$('.message-text')[0].innerHTML = processWarnMessage(warnMessage, size);
+		openMessagePopup();
+	}
+
+	function processWarnMessage(message, size) {
+		var fileMetric = (isMb) ? ' MB' : ' kb';
+		size = (isMb) ? size / 1000 : size;
+		return message.replace('{{warning_file_size}}', warnLevel + ' kb').replace('{{file_size}}', size + fileMetric);
+	}
+
+	// @see app/design/adminhtml/default/default/template/notification/window.phtml
+	function openMessagePopup() {
+        var height = $('html-body').getHeight();
+        $('message-popup-window-mask').setStyle({'height':height+'px'});
+        toggleSelectsUnderBlock($('message-popup-window-mask'), false);
+        Element.show('message-popup-window-mask');
+        $('message-popup-window').addClassName('show');
+    }
+
+	listenForImageUpload();
+//]]>
+</script>
+
+<?php // @see app/design/adminhtml/default/default/template/notification/window.phtml ?>
+<div id="message-popup-window-mask" style="display:none;"></div>
+<div id="message-popup-window" class="message-popup">
+    <div class="message-popup-head">
+        <a href="#" onclick="toggleSelectsUnderBlock($('message-popup-window-mask'), true); Element.hide('message-popup-window-mask'); $('message-popup-window').removeClassName('show'); messagePopupClosed = true;; return false;" title="close"><span>close</span></a>
+        <h2>Incoming Message</h2>
+    </div>
+    <div class="message-popup-content">
+        <div class="message">
+            <span class="message-icon message-CRITICAL" style="background-image:url('//widgets.magentocommerce.com/1.9.1.0/SEVERITY_CRITICAL.gif');">CRITICAL</span>
+            <p class="message-text"></p>
+        </div>
+    </div>
+</div>
+
+<?php endif; ?>
